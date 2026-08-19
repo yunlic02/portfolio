@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yun Li (Cetrina) Cheong — Marketing & Creative Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#faf8f1;
+    --paper:#ffffff;
+    --ink:#201e1a;
+    --muted:#726c5e;
+    --line:#e4e0d0;
+    --olive:#6f7d4f;
+    --olive-deep:#4f5b37;
+    --olive-soft:#e8ecdb;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .eyebrow{
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-size:.72rem;
+    color:var(--olive-deep);
+    font-weight:600;
+  }
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,248,241,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 28px;
+  }
+  .logo{font-family:'Caveat';font-size:1.9rem;font-weight:600;letter-spacing:.01em;}
+  .navlinks{display:flex;gap:26px;font-size:.85rem;font-weight:500;}
+  .navlinks a{opacity:.75;transition:opacity .2s;}
+  .navlinks a:hover{opacity:1;color:var(--olive-deep);}
+
+  .roles-ticker{
+    display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 6px;
+  }
+  .roles-ticker span{
+    border:1px solid var(--line);border-radius:100px;padding:6px 16px;
+    font-size:.78rem;color:var(--muted);background:var(--paper);
+  }
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:12px 26px;border-radius:100px;font-size:.85rem;font-weight:600;
+    border:1px solid var(--ink);transition:.2s;
+  }
+  .btn-solid{background:var(--ink);color:var(--cream);}
+  .btn-solid:hover{background:var(--olive-deep);border-color:var(--olive-deep);}
+  .btn-ghost:hover{background:var(--ink);color:var(--cream);}
+
+  /* STATS STRIP */
+  .stats{background:var(--ink);color:var(--cream);padding:40px 0;}
+  .stats .wrap{display:flex;flex-wrap:wrap;gap:34px;justify-content:space-between;}
+  .stat{flex:1;min-width:160px;text-align:center;}
+  .stat .num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:#c9d3a8;}
+  .stat .label1{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:#c9d3a8;margin-top:9px;}
+  .stat .label{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:#c3bfae;margin-top:4px;}
+
+  /* SECTIONS */
+  section{padding:80px 0;border-bottom:1px solid var(--line);scroll-margin-top:70px;}
+  section:last-of-type{border-bottom:none;}
+  .section-head{margin-bottom:42px;max-width:640px;}
+  .section-head h2{font-size:clamp(1.8rem,4vw,2.4rem);margin:8px 0 12px;}
+  .section-head p{color:var(--muted);}
+
+  /* GRID / CARDS */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;}
+  .card{
+    background:var(--paper);border:1px solid var(--line);border-radius:6px;overflow:hidden;
+    display:flex;flex-direction:column;transition:transform .18s, box-shadow .18s;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 10px 24px -14px rgba(32,30,26,.35);}
+  .card .media{width:100%;aspect-ratio:4/5;object-fit:cover;background:#ece7d6;display:block;cursor:pointer;}
+  .card.wide .media{aspect-ratio:16/10;}
+  .card video.media{aspect-ratio:9/16;object-fit:cover;}
+  .card-body{padding:20px 22px 24px;}
+  .card-body .tag{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--olive-deep);font-weight:600;margin-bottom:8px;display:block;}
+  .card-body .tag.featured{color:var(--paper);background:var(--olive-deep);display:inline-block;padding:3px 10px;border-radius:100px;}
+  .card-body h3{font-size:1.25rem;margin-bottom:8px;}
+  .card-body p{font-size:.88rem;color:var(--muted);}
+  .card-body p.outcome{color:var(--ink);margin-top:10px;font-size:.85rem;padding-top:10px;border-top:1px dashed var(--line);}
+  .card-body p.outcome strong{color:var(--olive-deep);}
+
+  /* SLIDESHOW (multi-image/video cards with prev/next) */
+  .slideshow-media{position:relative;aspect-ratio:4/5;overflow:hidden;background:#ece7d6;}
+  .slideshow-media.ratio-916{aspect-ratio:9/16;}
+  .slideshow-media .slide{display:none;width:100%;height:100%;}
+  .slideshow-media .slide.active{display:block;}
+  .slideshow-media .slide img,.slideshow-media .slide video{width:100%;height:100%;object-fit:cover;display:block;cursor:pointer;}
+  .slide-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;
+    background:rgba(32,30,26,.55);color:#fff;border:none;display:flex;align-items:center;justify-content:center;
+    cursor:pointer;font-size:1rem;z-index:5;line-height:1;padding:0;
+  }
+  .slide-arrow:hover{background:rgba(32,30,26,.8);}
+  .slide-prev{left:10px;}
+  .slide-next{right:10px;}
+  .slide-dots{position:absolute;bottom:10px;left:0;right:0;display:flex;justify-content:center;gap:6px;z-index:5;}
+  .slide-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55);cursor:pointer;}
+  .slide-dots span.active{background:#fff;}
+  .slide-count{position:absolute;top:10px;right:10px;background:rgba(32,30,26,.55);color:#fff;font-size:.65rem;padding:2px 9px;border-radius:100px;z-index:5;}
+  .slide-caption{position:absolute;bottom:10px;left:10px;background:rgba(32,30,26,.55);color:#fff;font-size:.65rem;padding:2px 9px;border-radius:100px;z-index:5;}
+  .slide-placeholder{
+    width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;
+    background:repeating-linear-gradient(135deg,var(--olive-soft),var(--olive-soft) 10px,#dfe4cd 10px,#dfe4cd 20px);
+    color:var(--olive-deep);font-size:.8rem;font-weight:500;padding:20px;
+  }
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.1fr 1.3fr;gap:64px;align-items:center;}
+  .about-grid p{font-size:clamp(.9rem,1vw,1rem);margin-bottom:16px;color:var(--ink);}
+  .about-heading{
+    font-family:'Inter',sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:.05em;font-size:clamp(1.7rem,3.6vw,2.1rem);margin-bottom:12px;color:var(--ink);
+  }
+    .about-photo{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;border:1px solid var(--line);display:block;}
+  .role-line{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--olive-deep);font-size:1.1rem;margin-bottom:20px;}
+  .get-in-touch{margin-top:22px;font-size:.9rem;}
+  .get-in-touch a{text-decoration:underline;text-underline-offset:3px;color:var(--ink);}
+  .get-in-touch a:hover{color:var(--olive-deep);}
+  .get-in-touch .sep{color:var(--line);margin:0 8px;}
+  .pill-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .pill{background:var(--olive-soft);color:var(--olive-deep);border-radius:100px;padding:5px 14px;font-size:.78rem;font-weight:500;}
+  .side-block{margin-bottom:10px;}
+  .side-block h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px;}
+  .about-footer-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:40px;
+    margin-top:56px;padding-top:36px;border-top:1px solid var(--line);
+  }
+
+  /* CLIENTS */
+  .clients{display:flex;flex-wrap:wrap;gap:14px 30px;font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--muted);}
+
+  /* PLACEHOLDERS */
+  .placeholder{
+    border:1.5px dashed var(--olive);border-radius:8px;padding:22px 20px;
+    background:var(--olive-soft);
+    color:var(--olive-deep);font-size:.85rem;font-weight:500;text-align:center;
+  }
+  .placeholder .plus{font-family:'Cormorant Garamond';font-size:1.4rem;display:block;margin-bottom:4px;font-style:italic;}
+  .photo-placeholder{aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;flex-direction:column;}
+  .quote-placeholder{margin-top:28px;}
+
+  /* CONTACT */
+  .contact{text-align:center;}
+  .contact h2{font-size:clamp(2rem,5vw,2.8rem);margin-bottom:16px;}
+  .contact p{color:var(--muted);margin-bottom:30px;}
+  .contact .placeholder{display:inline-block;padding:12px 26px;border-radius:100px;font-size:.85rem;}
+
+  footer{padding:36px 0;text-align:center;font-size:.78rem;color:var(--muted);}
+
+  /* LIGHTBOX */
+  .lightbox{
+    position:fixed;inset:0;background:rgba(20,17,14,.92);display:none;
+    align-items:center;justify-content:center;z-index:100;padding:24px;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img, .lightbox video{max-width:min(92vw,700px);max-height:88vh;border-radius:4px;}
+  .lightbox-close{position:absolute;top:22px;right:28px;color:#fff;font-size:2rem;cursor:pointer;line-height:1;}
+
+  @media (max-width:760px){
+    nav.wrap{flex-wrap:wrap;gap:10px;padding:14px 20px;}
+    .navlinks{gap:14px;overflow-x:auto;width:100%;padding-bottom:2px;}
+    .navlinks a{white-space:nowrap;}
+    .about-grid{grid-template-columns:1fr;}
+    .about-footer-grid{grid-template-columns:1fr;gap:28px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">cert!</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#content">Content &amp; Reels</a>
+      <a href="#design">Design</a>
+      <a href="#events">Events</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<!-- INTRO + ABOUT, MERGED -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+        <div>
+            <img class="about-photo" src="assets/img/certpic.jpg" alt="Headshot of Cetrina Cheong">
+          </div>
+        <div>
+          <p class="eyebrow">Marketing &amp; Creative Portfolio</p>
+          <h2 class="about-heading">Yun Li (Cetrina) Cheong </h2>
+          <p class="role-line">brand, events &amp; content</p>
+          <p>Hi! I'm Cetrina, a marketing professional with experience in academic, non-profit, and startup environments.</p><p>My work can be defined by my History dissertation: focusing on South Korea's beauty standards, I analysed how traditional values continuously get reshaped within modern, globalised contexts to influence demand. What I took from it was the question (and skill) that applies to pretty much any brand: figuring out <strong>why</strong> an audience wants what it wants and <strong>how</strong> it got that way, then building an argument that actually holds up. </p>
+          <p>At GetHarley, I've used that lens across brand content, campaigns, and product marketing — producing the assets behind the sharpest growth stretch the Instagram channel has seen, and translating new AI product features into the emails and videos that introduced them to practitioners.</p>
+          <p>I'm currently open to roles in marketing, brand, PR, and client/customer relations. I love the mix of strategy and creativity, and I'm looking to keep growing with a team that works the same way.</p>
+            <p class="get-in-touch">
+              <a href="#content">View the work</a><span class="sep">·</span><a href="#contact">Feel free to get in touch</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="about-footer-grid">
+        <div class="side-block">
+          <h4>Experience</h4>
+          <p style="margin-bottom:4px;"><strong>Marketing — Brand &amp; Design</strong> at GetHarley</p>
+          <p style="margin-bottom:4px;color:var(--muted);font-size:.9rem;">Dec 2025 – Jun 2026</p>
+          <br>
+          <p style="margin-bottom:4px;"><strong>Social Media &amp; Marketing Manager</strong> at Project YUFE</p>
+          <p style="margin-bottom:4px;color:var(--muted);font-size:.9rem;">Aug 2020 – Jan 2022</p>
+        <p style="margin-top:20px;color:var(--muted);font-size:.9rem;">BA History, University College London · Dissertation on beauty politics and neoliberalism in South Korea</p>
+        </div>
+     <div class="side-block">
+        <div class="pill-group">
+          <span class="pill">Adobe Creative Cloud</span>
+          <span class="pill">Calendly</span>
+          <span class="pill">Canva</span>
+          <span class="pill">CapCut</span>
+          <span class="pill">Claude AI</span>
+          <span class="pill">Customer.io</span>
+          <span class="pill">Google Workspace</span>
+          <span class="pill">Inside LVMH Certified</span>
+          <span class="pill">Meta Business Suite</span>
+          <span class="pill">Microsoft 365</span>
+        </div>
+        <div class="roles-ticker">
+        <span>Email Marketing</span><span>Copywriting</span><span>Social Media Management</span><span>Events Coordination</span>
+         <span>Brand Partnerships</span><span>Graphic Design</span><span>Content Creation</span><span>Customer Service</span><span>Research & Analysis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="num">+337%</div><div class="label">Instagram views<br>Dec 2025 – Mar 2026</div></div>
+    <div class="stat"><div class="num">+2,752%</div><div class="label">Instagram engagement<br>Dec 2025 – Mar 2026</div></div>
+    <div class="stat"><div class="label1">Press</div><div class="label"> Tatler · Red · Aesthetics Journal</div></div>
+    <div class="stat"><div class="label1">Brands</div><div class="label"> Alastin · Intradermology · pHformula · Cellcosmet </div></div>
+  </div>
+</div>
+
+<!-- CONTENT & REELS -->
+<section id="content">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Selected Work</p>
+      <h2>Content &amp; Reels</h2>
+      <p>Short-form video and content — from filming and editing to scripting and posting,
+        built for GetHarley's social channels across product launches, campaigns and practitioner
+        partnerships.</p>
+    </div>
+    <div class="grid">
+
+      <div class="card">
+        <video class="media" controls preload="metadata" poster="assets/img/tatler-reel-poster.jpg" data-lightbox>
+          <source src="assets/video/tatler-reel.mp4" type="video/mp4">
+        </video>
+        <div class="card-body">
+          <span class="tag">Editorial · Press</span>
+          <h3>Tatler Reel</h3>
+          <p>Shot and edited a reel showcasing past GetHarley practitioners featured in Tatler, teasing the upcoming edition ahead of publication. Styled with a snappy, "runway"-inspired edit to play up the editorial angle and make it memorable.</p>
+          <p class="outcome">Drew tags, reposts, and comments from the GetHarley practitioner community, surpassing <strong>Q1 Instagram engagement targets</strong> on both <a href="https://www.instagram.com/getharley/" style="text-decoration:underline;text-underline-offset:2px;">@getharley</a> and <a href="https://www.instagram.com/getharleypractitioners/" style="text-decoration:underline;text-underline-offset:2px;">@getharleypractitioners</a></p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="slideshow-media ratio-916 slideshow">
+          <div class="slide active">
+            <video controls preload="metadata" poster="assets/img/mothers-day-priya-poster.jpg">
+              <source src="assets/video/mothers-day-priya.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="slide">
+            <video controls preload="metadata" poster="assets/img/mothers-day-anjuli-poster.jpg">
+              <source src="assets/video/mothers-day-anjuli.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="slide">
+            <video controls preload="metadata" poster="assets/img/mothers-day-cheryl-poster.jpg">
+              <source src="assets/video/mothers-day-cheryl.mp4" type="video/mp4">
+            </video>
+          </div>
+          <button class="slide-prev slide-arrow" aria-label="Previous">‹</button>
+          <button class="slide-next slide-arrow" aria-label="Next">›</button>
+          <div class="slide-dots"><span></span><span></span><span></span></div>
+          <div class="slide-count"></div>
+        </div>
+        
+        <div class="card-body">
+          <span class="tag featured">Featured</span>
+          <h3>"Mother Knows Best" Campaign</h3>
+          <p>Led filming, editing and posting for the Mother's Day series — interviews, behind-the-scenes content, IG Story teasers, and final reels edited to convey a "comforting" tone, while staying true to brand identity. Click through to see 3 of the 5 reels.</p>
+          <p class="outcome">Contributed to the the team <strong>surpassing its March 2026 Instagram engagement target</strong> and boosted IG Story engagement during the shoot—part of a campaign that saw <strong> 337% view growth</strong> and <strong>2,752% engagement growth</strong> (Dec 2025 – Mar 2026). See the on-set stills from this shoot under <a href="#events" style="text-decoration:underline;text-underline-offset:2px;">Events &amp; Activations → Women's Health Mother's Day Shoot</a>.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <video class="media" controls preload="metadata" poster="assets/img/get-the-gloss-poster.jpg" data-lightbox>
+          <source src="assets/video/get-the-gloss-reel.mp4" type="video/mp4">
+        </video>
+        <div class="card-body">
+          <span class="tag">Partnership</span>
+          <h3>Get the Gloss Promo Reel</h3>
+          <p>Designed and edited a promotional reel for GetHarley's practitioner-exclusive partnership with The Gloss Book, building in motion to hold attention and editing the on-screen copy to keep the offer clear.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <video class="media" controls preload="metadata" poster="assets/img/sizzle-poster.png" data-lightbox>
+          <source src="assets/video/sizzle-snippet.mp4" type="video/mp4">
+        </video>
+        <div class="card-body">
+          <span class="tag">Product Launch</span>
+          <h3>Product Launch Video</h3>
+          <p>Edited the launch video for GetHarley's new platform, drafting the voiceover script and keeping the cut clean and on-brand, with smooth transitions and animation throughout.</p>
+          <p class="outcome">Used to introduce the new platform to practitioners and drive onboarding interest, contributing to successful sales pitches.</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="slideshow-media slideshow">
+          <div class="slide active"><img src="assets/img/product-spotlight-1.jpg" alt="Product Spotlight tile 1" data-lightbox></div>
+          <div class="slide"><img src="assets/img/product-spotlight-2.jpg" alt="Product Spotlight tile 2" data-lightbox></div>
+          <div class="slide"><img src="assets/img/product-spotlight-3.jpg" alt="Product Spotlight tile 3" data-lightbox></div>
+          <div class="slide"><img src="assets/img/product-spotlight-4.jpg" alt="Product Spotlight tile 4" data-lightbox></div>
+          <div class="slide"><img src="assets/img/product-spotlight-5.jpg" alt="Product Spotlight tile 5" data-lightbox></div>
+          <div class="slide"><img src="assets/img/product-spotlight-6.jpg" alt="Product Spotlight tile 6" data-lightbox></div>
+          <button class="slide-prev slide-arrow" aria-label="Previous">‹</button>
+          <button class="slide-next slide-arrow" aria-label="Next">›</button>
+          <div class="slide-dots"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="slide-count"></div>
+        </div>
+        <div class="card-body">
+          <span class="tag">Copywriting + Design</span>
+          <h3>Product Spotlight Series</h3>
+          <p>Designed a rotating set of product spotlight tiles targeted towards the GetHarley practitioner community, writing the caption and poster copy, doing research on each product and turning rough blurbs into full, on-brand copies to relay product information. Kept each post visually and tonally consistent. </p>
+          <p class="outcome">Contributed to incoming requests from practitioners to add product to their shelves.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN & VISUAL IDENTITY -->
+<section id="design">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Selected Work</p>
+      <h2>Design &amp; Visual Identity</h2>
+      <p>Print editorial design and product assets built in Adobe InDesign and Canva for
+        GetHarley's press coverage and practitioner partners, often  liaising with practitioners, Account Managers and external partners to turn a rough brief into finished, on-brand copy and layout</p>
+    </div>
+    <div class="grid">
+
+      <div class="card">
+        <img class="media" src="assets/img/currentbody-promo-1.jpg" alt="CurrentBody LED mask promo asset" data-lightbox>
+        <div class="card-body">
+          <span class="tag">Product Promo</span>
+          <h3>CurrentBody Promo</h3>
+          <p>Designed promotional assets for Dr Amiee Vyas' CurrentBody LED mask offer, built for her practice's own social channels.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="slideshow-media slideshow">
+          <div class="slide active"><img src="assets/img/gwp-post-ver1.jpg" alt="February Gift with Purchase Instagram post, version 1" data-lightbox></div>
+          <div class="slide"><img src="assets/img/gwp-post-ver2.jpg" alt="February Gift with Purchase Instagram post, version 2" data-lightbox></div>
+          <button class="slide-prev slide-arrow" aria-label="Previous">‹</button>
+          <button class="slide-next slide-arrow" aria-label="Next">›</button>
+          <div class="slide-dots"><span></span><span></span></div>
+          <div class="slide-count"></div>
+        </div>
+        <div class="card-body">
+          <span class="tag">Campaign</span>
+          <h3>February Promotion</h3>
+          <p>Designed mail-merge and social assets for a practitioner's Gift With Purchase promotion, spotlighting the product and drawing attention to both the free gift and GetHarley partnership.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="media" src="assets/img/spring-orders-poster.jpg" alt="Spring Glow campaign poster" data-lightbox>
+        <div class="card-body">
+            <span class="tag">Campaign</span>
+          <h3>Spring Glow</h3>
+          <p>Created the Spring Glow campaign asset, built to drive first-time orders among self-serve practitioners. Background photography by me. Wrote the slogan and copy, aiming for a "spring" feel with an on-brand elegance.</p>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="grid">
+      <div class="card wide">
+        <img class="media" src="assets/img/red-magazine-spread.jpg" alt="Red Magazine final spread feature" data-lightbox>
+        <div class="card-body">
+          <span class="tag">Print · Editorial · Photography</span>
+          <h3>Red Magazine</h3>
+          <p>Led the product box shoot, then designed the GetHarley feature spread for Red Magazine, introducing the platform and its personalised skincare service to a new readership.</p>
+          <p class="outcome">Box photograph also used by Red's team to promote the Brunch Club event across their social channels and magazine issues. See event under <a href="#events" style="text-decoration:underline;text-underline-offset:2px;">Events &amp; Activations → Red Beauty &amp; Brunch Club with GetHarley</a>.</p>
+        </div>
+      </div>
+      
+      <div class="card wide">
+        <img class="media" src="assets/img/aesthetics-journal-spread.jpg" alt="Aesthetics Journal double-page spread for the GetHarley Growth Competition" data-lightbox>
+        <div class="card-body">
+          <span class="tag">Print · Editorial</span>
+          <h3>Aesthetics Journal</h3>
+          <p>Designed the double-page spread announcing the GetHarley Growth Competition for
+            Aesthetics Journal, pairing an editorial serif headline with a clear call to action for clinic owners. Built the competition's application form and revised the layout against feedback on an extremely tight turnaround</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Selected Work</p>
+      <h2>Events &amp; Activations</h2>
+      <p>End-to-end coordination for practitioner and brand activations — design, logistics,supplier liaison and on-the-day social coverage. Earlier on, this also covered a TEDxYouth conference as Co-Head, and two intercollegiate events as Publicty Director for UCL's Representative Director Programme.</p>
+    </div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="slideshow-media slideshow">
+          <div class="slide active"><img src="assets/img/iwd-photo-2.jpg" alt="International Women's Day dinner photo" data-lightbox></div>
+          <div class="slide"><img src="assets/img/iwd-photo-1.jpg" alt="International Women's Day dinner photo" data-lightbox></div>
+          <div class="slide"><img src="assets/img/iwd-photo-3.jpg" alt="International Women's Day dinner photo" data-lightbox></div>
+          <div class="slide"><img src="assets/img/iwd-photo-4.jpg" alt="International Women's Day dinner photo" data-lightbox></div>
+          <button class="slide-prev slide-arrow" aria-label="Previous">‹</button>
+          <button class="slide-next slide-arrow" aria-label="Next">›</button>
+          <div class="slide-dots"><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="slide-count"></div>
+        </div>
+        <div class="card-body">
+          <span class="tag">Brand Activation</span>
+          <h3>International Women's Day Dinner</h3>
+          <p>Designed the invitation, wrote guest postcards, packed gift boxes,and styled the table for photography. Post-event, personally reached out to each gifting brand to source product information to share back with practitioners.</p>
+          <p class="outcome">Contributed to practitioner community-building and boosted Instagram engagement in real time.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="slideshow-media slideshow">
+          <div class="slide active"><img src="assets/img/red1.jpeg" alt="Red Event" data-lightbox></div>
+          <div class="slide"><img src="assets/img/red2.jpg" alt="Red Event" data-lightbox></div>
+          <div class="slide"><img src="assets/img/red3.jpeg" alt="Red Event" data-lightbox></div>
+          <div class="slide"><img src="assets/img/red4.jpg" alt="Red Event" data-lightbox></div>
+          <div class="slide"><img src="assets/img/red5.jpeg" alt="Red Event" data-lightbox></div>
+          <div class="slide"><img src="assets/img/red6.jpeg" alt="Red Event" data-lightbox></div>
+          <button class="slide-prev slide-arrow" aria-label="Previous">‹</button>
+          <button class="slide-next slide-arrow" aria-label="Next">›</button>
+          <div class="slide-dots"><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="slide-count"></div>
+        </div>
+        <div class="card-body">
+          <span class="tag">Brand Activation · Partnership </span>
+          <h3>Red Beauty &amp; Brunch Club with GetHarley</h3>
+          <p>Curated event assets for Red's team to use in their promotion. Set up the skin consultation booking flow and skin questionnaire on Calendly, packed 40 goodie bags, designed postcards, and coordinated brand samples with Alastin, pHformula and Intradermology. On the day, set up laptops and assisted practitioners and attendees through free consultations, building a spreadsheet of attendee details so each practitioner could prepare in advance. Also shot content for social channels.</p>
+          <p class="outcome">Event and Q&A panel received positive feedback from both the Red team and attendees. Free consultations with practitioners drove first-time conversions.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="slideshow-media slideshow">
+          <div class="slide active"><img src="assets/img/wh-1.jpeg" alt="Women's Health Shoot" data-lightbox></div>
+          <div class="slide"><img src="assets/img/wh-2.jpeg" alt="Women's Health Shoot" data-lightbox></div>
+          <div class="slide"><img src="assets/img/wh-3.jpeg" alt="Women's Health Shoot" data-lightbox></div>
+          <div class="slide"><img src="assets/img/wh-4.jpeg" alt="Women's Health Shoot" data-lightbox></div>
+          <div class="slide"><img src="assets/img/wh-5.jpeg" alt="Women's Health Shoot" data-lightbox></div>
+          <button class="slide-prev slide-arrow" aria-label="Previous">‹</button>
+          <button class="slide-next slide-arrow" aria-label="Next">›</button>
+          <div class="slide-dots"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="slide-count"></div>
+        </div>
+        <div class="card-body">
+          <span class="tag">Content Production</span>
+          <h3>Women's Health Mother's Day Shoot</h3>
+          <p>On-set support for the Women's Health photoshoot — liaised with practitioners, the photographer and hair/makeup team, and filmed behind-the-scenes content for Instagram.</p>
+          <p class="outcome">Helped foster a sense of community among participating practitioners. Real-time BTS content contributed to <strong>Q1 engagement targets</strong>. Stills from the same shoot that produced the <strong>"Mother Knows Best"</strong> reels — see them under <a href="#content" style="text-decoration:underline;text-underline-offset:2px;">Content &amp; Reels</a>.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="slideshow-media slideshow">
+          <div class="slide active"><img src="assets/img/webinar-alastin.jpg" alt="Alastin AMV webinar promotion poster" data-lightbox></div>
+          <div class="slide"><img src="assets/img/webinar-grid.jpg" alt="Webinar promotion grid poster" data-lightbox></div>
+          <div class="slide"><img src="assets/img/webinar-phformula.jpg" alt="phformula webinar promotion poster" data-lightbox></div>
+          <button class="slide-prev slide-arrow" aria-label="Previous">‹</button>
+          <button class="slide-next slide-arrow" aria-label="Next">›</button>
+          <div class="slide-dots"><span></span><span></span><span></span><span></span></div>
+          <div class="slide-count"></div>
+        </div>
+        <div class="card-body">
+          <span class="tag">Live Events · Copywriting + Design</span>
+          <h3>IG Lives &amp; Practitioner Webinars</h3>
+          <p>Designed the posters and turned rough briefs into on-brand copy for each IG Live and webinar, then set up sign-up forms and assisted with the live sessions, including troubleshooting technical issues on the spot. Followed up with the RSVP list post-event, sending attendees the recording and coordinating with brand partners to send free samples.</p>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <p class="eyebrow">Get in touch</p>
+    <h2>Let's work together</h2>
+    <p>Open to roles in marketing, brand, PR, and client/customer relations.</p>
+    <div class="cta-row">
+      <a class="btn btn-solid" href="mailto:yunlic02@gmail.com">yunlic02@gmail.com</a>
+      <a class="btn btn-solid" href="https://www.linkedin.com/in/yun-li-cheong" id="linkedin-link">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">&copy; <span id="year"></span> Yun Li (Cetrina) Cheong</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lightbox-close">&times;</span>
+  <div id="lightbox-content"></div>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxContent = document.getElementById('lightbox-content');
+
+  document.querySelectorAll('img[data-lightbox]').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxContent.innerHTML = '';
+      const clone = document.createElement('img');
+      clone.src = img.src;
+      clone.alt = img.alt;
+      lightboxContent.appendChild(clone);
+      lightbox.classList.add('open');
+    });
+  });
+
+  document.getElementById('lightbox-close').addEventListener('click', () => {
+    lightbox.classList.remove('open');
+    lightboxContent.innerHTML = '';
+  });
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.remove('open');
+      lightboxContent.innerHTML = '';
+    }
+  });
+
+  // SLIDESHOWS
+  document.querySelectorAll('.slideshow').forEach(box => {
+    const slides = Array.from(box.querySelectorAll('.slide'));
+    const dots = Array.from(box.querySelectorAll('.slide-dots span'));
+    const countEl = box.querySelector('.slide-count');
+    const prevBtn = box.querySelector('.slide-prev');
+    const nextBtn = box.querySelector('.slide-next');
+
+    if (slides.length <= 1) {
+      [prevBtn, nextBtn, box.querySelector('.slide-dots'), countEl].forEach(el => { if (el) el.style.display = 'none'; });
+      return;
+    }
+
+    let idx = 0;
+    function show(i) {
+      idx = (i + slides.length) % slides.length;
+      slides.forEach((s, si) => {
+        s.classList.toggle('active', si === idx);
+        const v = s.querySelector('video');
+        if (v && si !== idx) v.pause();
+      });
+      dots.forEach((d, di) => d.classList.toggle('active', di === idx));
+      if (countEl) countEl.textContent = (idx + 1) + ' / ' + slides.length;
+    }
+    prevBtn.addEventListener('click', e => { e.stopPropagation(); show(idx - 1); });
+    nextBtn.addEventListener('click', e => { e.stopPropagation(); show(idx + 1); });
+    dots.forEach((d, di) => d.addEventListener('click', e => { e.stopPropagation(); show(di); }));
+    show(0);
+  });
+</script>
+
+</body>
+</html>
